@@ -26,7 +26,6 @@ import org.hipparchus.util.Binary64;
 import org.hipparchus.util.Binary64Field;
 import org.hipparchus.util.FastMath;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Random;
@@ -253,6 +252,28 @@ public class FieldQuaternionTest {
         final FieldQuaternion<Binary64> q1 =
                 new FieldQuaternion<>(Binary64Field.getInstance(), new Quaternion(0.5, -1.5, 3.5, 0.8));
         final double a = 3.2;
+
+        final FieldQuaternion<Binary64> q = q1.multiply(a);
+
+        Assert.assertEquals(w, q.getQ0().getReal(), COMPARISON_EPS);
+        Assert.assertEquals(x, q.getQ1().getReal(), COMPARISON_EPS);
+        Assert.assertEquals(y, q.getQ2().getReal(), COMPARISON_EPS);
+        Assert.assertEquals(z, q.getQ3().getReal(), COMPARISON_EPS);
+    }
+
+    @Test
+    public final void testScalarMultiplyField() {
+
+        // expected outputs
+        final double w = 1.6;
+        final double x = -4.8;
+        final double y = 11.20;
+        final double z = 2.56;
+
+        // inputs
+        final FieldQuaternion<Binary64> q1 =
+                new FieldQuaternion<>(Binary64Field.getInstance(), new Quaternion(0.5, -1.5, 3.5, 0.8));
+        final Binary64 a = new Binary64(3.2);
 
         final FieldQuaternion<Binary64> q = q1.multiply(a);
 
@@ -495,6 +516,19 @@ public class FieldQuaternionTest {
         Assert.assertEquals(e2.getQ1().getReal(), p2.getQ1().getReal(), 0);
         Assert.assertEquals(e2.getQ2().getReal(), p2.getQ2().getReal(), 0);
         Assert.assertEquals(e2.getQ3().getReal(), p2.getQ3().getReal(), 0);
+    }
+
+    @Test
+    public void testToQuaternion() {
+
+        final FieldQuaternion<Binary64> q1 =
+                new FieldQuaternion<>(Binary64Field.getInstance(), new Quaternion(1.5, 4, 2, -2.5));
+        final Quaternion q2 = q1.toQuaternion();
+
+        Assert.assertEquals(q1.getQ0().getReal(), q2.getQ0(), 0);
+        Assert.assertEquals(q1.getQ1().getReal(), q2.getQ1(), 0);
+        Assert.assertEquals(q1.getQ2().getReal(), q2.getQ2(), 0);
+        Assert.assertEquals(q1.getQ3().getReal(), q2.getQ3(), 0);
     }
 
     @Test

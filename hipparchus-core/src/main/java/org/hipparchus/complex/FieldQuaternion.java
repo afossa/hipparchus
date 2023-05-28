@@ -497,12 +497,29 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
     }
 
     /**
+     * Returns a quaternion built from the real part of the instance components.
+     * @return quaternion
+     */
+    public Quaternion toQuaternion() {
+        return new Quaternion(q0.getReal(), q1.getReal(), q2.getReal(), q3.getReal());
+    }
+
+    /**
      * Multiplies the instance by a scalar.
      *
      * @param alpha Scalar factor.
      * @return a scaled quaternion.
      */
     public FieldQuaternion<T> multiply(final double alpha) {
+        return new FieldQuaternion<>(q0.multiply(alpha), q1.multiply(alpha), q2.multiply(alpha), q3.multiply(alpha));
+    }
+
+    /**
+     * Multiplies the instance by a scalar.
+     * @param alpha scalar factor
+     * @return scaled quaternion
+     */
+    public FieldQuaternion<T> multiply(final T alpha) {
         return new FieldQuaternion<>(q0.multiply(alpha), q1.multiply(alpha), q2.multiply(alpha), q3.multiply(alpha));
     }
 
