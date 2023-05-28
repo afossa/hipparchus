@@ -27,6 +27,7 @@ import java.util.function.Supplier;
 
 import org.hipparchus.CalculusFieldElement;
 import org.hipparchus.Field;
+import org.hipparchus.complex.FieldQuaternion;
 import org.hipparchus.exception.MathIllegalArgumentException;
 import org.hipparchus.exception.MathIllegalStateException;
 import org.hipparchus.exception.MathRuntimeException;
@@ -101,6 +102,16 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
             this.q3 = q3;
         }
 
+    }
+
+    /**
+     * Build a rotation from a quaternion.
+     * @param q rotation quaternion
+     * @param needsNormalization if true the quaternion is considered not
+     *                           unitary and thus normalized before using it
+     */
+    public FieldRotation(final FieldQuaternion<T> q, final boolean needsNormalization) {
+        this(q.getQ0(), q.getQ1(), q.getQ2(), q.getQ3(), needsNormalization);
     }
 
     /** Build a rotation from an axis and an angle.
@@ -455,6 +466,14 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
      */
     public T getQ3() {
         return q3;
+    }
+
+    /**
+     * Returns the rotation quaternion.
+     * @return quaternion
+     */
+    public FieldQuaternion<T> getQuaternion() {
+        return new FieldQuaternion<>(q0, q1, q2, q3);
     }
 
     /** Get the normalized axis of the rotation.
@@ -862,7 +881,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
      * @param cosGetter getter for the cosine coordinate
      * @param sin1Getter getter for one of the sine coordinates
      * @param sin2Getter getter for the other sine coordinate
-     * @param acos of the coordinate
+     * @return acos of the coordinate
      * @since 3.0
      */
     private T safeAcos(final FieldVector3D<T> v,
@@ -888,7 +907,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
      * @param sinGetter getter for the sine coordinate
      * @param cos1Getter getter for one of the cosine coordinates
      * @param cos2Getter getter for the other cosine coordinate
-     * @param acos of the coordinate
+     * @return asin of the coordinate
      * @since 3.0
      */
     private T safeAsin(final FieldVector3D<T> v,

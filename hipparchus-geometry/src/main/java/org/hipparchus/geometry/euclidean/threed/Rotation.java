@@ -25,6 +25,7 @@ package org.hipparchus.geometry.euclidean.threed;
 import java.io.Serializable;
 import java.util.function.DoubleSupplier;
 
+import org.hipparchus.complex.Quaternion;
 import org.hipparchus.exception.MathIllegalArgumentException;
 import org.hipparchus.exception.MathIllegalStateException;
 import org.hipparchus.exception.MathRuntimeException;
@@ -160,6 +161,16 @@ public class Rotation implements Serializable {
     this.q2 = q2;
     this.q3 = q3;
 
+  }
+
+    /**
+     * Build a rotation from a quaternion.
+     * @param q rotation quaternion
+     * @param needsNormalization if true the quaternion is considered not
+     *                           unitary and thus normalized before using it
+     */
+  public Rotation(final Quaternion q, final boolean needsNormalization) {
+      this(q.getQ0(), q.getQ1(), q.getQ2(), q.getQ3(), needsNormalization);
   }
 
   /** Build a rotation from an axis and an angle.
@@ -482,6 +493,14 @@ public class Rotation implements Serializable {
    */
   public double getQ3() {
     return q3;
+  }
+
+  /**
+   * Returns the rotation quaternion.
+   * @return rotation quaternion
+   */
+  public Quaternion getQuaternion() {
+      return new Quaternion(q0, q1, q2, q3);
   }
 
   /** Get the normalized axis of the rotation.
@@ -934,7 +953,7 @@ public class Rotation implements Serializable {
    * @param cosGetter getter for the cosine coordinate
    * @param sin1Getter getter for one of the sine coordinates
    * @param sin2Getter getter for the other sine coordinate
-   * @param acos of the coordinate
+   * @return acos of the coordinate
    * @since 3.0
    */
   private double safeAcos(final Vector3D v,
@@ -960,7 +979,7 @@ public class Rotation implements Serializable {
    * @param sinGetter getter for the sine coordinate
    * @param cos1Getter getter for one of the cosine coordinates
    * @param cos2Getter getter for the other cosine coordinate
-   * @param acos of the coordinate
+   * @return asin of the coordinate
    * @since 3.0
    */
   private double safeAsin(final Vector3D v,

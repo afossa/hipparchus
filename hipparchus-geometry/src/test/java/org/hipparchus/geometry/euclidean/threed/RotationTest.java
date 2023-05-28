@@ -22,12 +22,14 @@
 
 package org.hipparchus.geometry.euclidean.threed;
 
+import org.hipparchus.complex.Quaternion;
 import org.hipparchus.exception.MathIllegalArgumentException;
 import org.hipparchus.exception.MathIllegalStateException;
 import org.hipparchus.exception.MathRuntimeException;
 import org.hipparchus.geometry.LocalizedGeometryFormats;
 import org.hipparchus.util.FastMath;
 import org.hipparchus.util.MathUtils;
+import org.hipparchus.util.SinCos;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -729,6 +731,46 @@ public class RotationTest {
       Assert.assertEquals(good.getX(), appliedIndividually.getX(), 1e-12);
       Assert.assertEquals(good.getY(), appliedIndividually.getY(), 1e-12);
       Assert.assertEquals(good.getZ(), appliedIndividually.getZ(), 1e-12);
+  }
+
+  @Test
+  public void testQuaternionConstructor() {
+
+      final SinCos theta  = FastMath.sinCos(0.5);
+      final Vector3D unit = new Vector3D(1.0, 1.0, 1.0).normalize();
+
+      final double q0 = theta.cos();
+      final double q1 = unit.getX() * theta.sin();
+      final double q2 = unit.getY() * theta.sin();
+      final double q3 = unit.getZ() * theta.sin();
+
+      final Rotation r1 = new Rotation(new Quaternion(q0, q1, q2, q3), false);
+      final Rotation r2 = new Rotation(unit, 1.0, RotationConvention.FRAME_TRANSFORM);
+
+      Assert.assertEquals(r2.getQ0(), r1.getQ0(), 0);
+      Assert.assertEquals(r2.getQ1(), r1.getQ1(), 0);
+      Assert.assertEquals(r2.getQ2(), r1.getQ2(), 0);
+      Assert.assertEquals(r2.getQ3(), r1.getQ3(), 0);
+  }
+
+  @Test
+  public void testGetQuaternion() {
+
+      final SinCos theta  = FastMath.sinCos(0.5);
+      final Vector3D unit = new Vector3D(1.0, 1.0, 1.0).normalize();
+
+      final double q0 = theta.cos();
+      final double q1 = unit.getX() * theta.sin();
+      final double q2 = unit.getY() * theta.sin();
+      final double q3 = unit.getZ() * theta.sin();
+
+      final Rotation r1 = new Rotation(new Quaternion(q0, q1, q2, q3), false);
+      final Quaternion qq1 = r1.getQuaternion();
+
+      Assert.assertEquals(q0, qq1.getQ0(), 0);
+      Assert.assertEquals(q1, qq1.getQ1(), 0);
+      Assert.assertEquals(q2, qq1.getQ2(), 0);
+      Assert.assertEquals(q3, qq1.getQ3(), 0);
   }
 
   private void checkVector(Vector3D v1, Vector3D v2) {

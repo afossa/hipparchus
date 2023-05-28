@@ -22,6 +22,8 @@
 
 package org.hipparchus.geometry.euclidean.threed;
 
+import org.hipparchus.complex.FieldQuaternion;
+import org.hipparchus.complex.Quaternion;
 import org.hipparchus.dfp.Dfp;
 import org.hipparchus.dfp.DfpField;
 import org.hipparchus.exception.MathIllegalArgumentException;
@@ -30,7 +32,9 @@ import org.hipparchus.exception.MathRuntimeException;
 import org.hipparchus.random.UnitSphereRandomVectorGenerator;
 import org.hipparchus.random.Well1024a;
 import org.hipparchus.util.FastMath;
+import org.hipparchus.util.FieldSinCos;
 import org.hipparchus.util.MathUtils;
+import org.hipparchus.util.SinCos;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -903,6 +907,50 @@ public class FieldRotationDfpTest {
         Assert.assertEquals(0.0, FieldVector3D.angle(v1, quat.applyTo(u1)).getReal(), 1.0e-14);
         Assert.assertEquals(0.0, FieldVector3D.angle(v2, quat.applyTo(u2)).getReal(), 1.0e-14);
 
+    }
+
+    @Test
+    public void testQuaternionConstructor() {
+
+        final DfpField field = new DfpField(20);
+
+        final FieldSinCos<Dfp> theta  = field.newDfp(0.5).sinCos();
+        final FieldVector3D<Dfp> unit = createVector(1.0, 1.0, 1.0).normalize();
+
+        final Dfp q0 = theta.cos();
+        final Dfp q1 = unit.getX().multiply(theta.sin());
+        final Dfp q2 = unit.getY().multiply(theta.sin());
+        final Dfp q3 = unit.getZ().multiply(theta.sin());
+
+        final FieldRotation<Dfp> r1 = new FieldRotation<>(new FieldQuaternion<>(q0, q1, q2, q3), false);
+        final FieldRotation<Dfp> r2 = new FieldRotation<>(unit, field.newDfp(1.0), RotationConvention.FRAME_TRANSFORM);
+
+        Assert.assertEquals(r2.getQ0().getReal(), r1.getQ0().getReal(), 0);
+        Assert.assertEquals(r2.getQ1().getReal(), r1.getQ1().getReal(), 0);
+        Assert.assertEquals(r2.getQ2().getReal(), r1.getQ2().getReal(), 0);
+        Assert.assertEquals(r2.getQ3().getReal(), r1.getQ3().getReal(), 0);
+    }
+
+    @Test
+    public void testGetQuaternion() {
+
+        final DfpField field = new DfpField(20);
+
+        final FieldSinCos<Dfp> theta  = field.newDfp(0.5).sinCos();
+        final FieldVector3D<Dfp> unit = createVector(1.0, 1.0, 1.0).normalize();
+
+        final Dfp q0 = theta.cos();
+        final Dfp q1 = unit.getX().multiply(theta.sin());
+        final Dfp q2 = unit.getY().multiply(theta.sin());
+        final Dfp q3 = unit.getZ().multiply(theta.sin());
+
+        final FieldRotation<Dfp> r1 = new FieldRotation<>(new FieldQuaternion<>(q0, q1, q2, q3), false);
+        final FieldQuaternion<Dfp> qq1 = r1.getQuaternion();
+
+        Assert.assertEquals(q0.getReal(), qq1.getQ0().getReal(), 0);
+        Assert.assertEquals(q1.getReal(), qq1.getQ1().getReal(), 0);
+        Assert.assertEquals(q2.getReal(), qq1.getQ2().getReal(), 0);
+        Assert.assertEquals(q3.getReal(), qq1.getQ3().getReal(), 0);
     }
 
     private void checkAngle(Dfp a1, double a2) {
