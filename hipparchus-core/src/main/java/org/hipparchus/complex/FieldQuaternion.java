@@ -321,20 +321,15 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
 
     /** {@inheritDoc} */
     @Override
-    @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         }
         if (other instanceof FieldQuaternion) {
-            // FIXME how to properly do this class cast?
+            @SuppressWarnings("unchecked")
             final FieldQuaternion<T> q = (FieldQuaternion<T>) other;
-            return q0 == q.getQ0() &&
-                    q1 == q.getQ1() &&
-                    q2 == q.getQ2() &&
-                    q3 == q.getQ3();
+            return q0.equals(q.q0) && q1.equals(q.q1) && q2.equals(q.q2) && q3.equals(q.q3);
         }
-
         return false;
     }
 
@@ -359,13 +354,12 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
      * @return {@code true} if each of the components are equal
      * within the allowed absolute error.
      */
-    public boolean equals(final FieldQuaternion<T> q,
-                          final double eps) {
-        // FIXME CalculusFieldElements should implement equals(Object, eps)
-        return Precision.equals(q0.getReal(), q.getQ0().getReal(), eps) &&
-                Precision.equals(q1.getReal(), q.getQ1().getReal(), eps) &&
-                Precision.equals(q2.getReal(), q.getQ2().getReal(), eps) &&
-                Precision.equals(q3.getReal(), q.getQ3().getReal(), eps);
+    public boolean equals(final FieldQuaternion<T> q, final double eps) {
+        // equality check limited to the real part as for FieldComplex
+        return Precision.equals(q0.getReal(), q.q0.getReal(), eps) &&
+                Precision.equals(q1.getReal(), q.q1.getReal(), eps) &&
+                Precision.equals(q2.getReal(), q.q2.getReal(), eps) &&
+                Precision.equals(q3.getReal(), q.q3.getReal(), eps);
     }
 
     /**
@@ -526,14 +520,8 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        // TODO this might need to be adapted
         final String sp = " ";
-        return "[" +
-                q0 + sp +
-                q1 + sp +
-                q2 + sp +
-                q3 +
-                ']';
+        return "[" + q0 + sp + q1 + sp + q2 + sp + q3 + "]";
     }
 
 }
