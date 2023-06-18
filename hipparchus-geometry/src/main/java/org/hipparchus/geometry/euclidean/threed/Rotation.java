@@ -206,15 +206,15 @@ public class Rotation implements Serializable {
      * 1, among the orthogonal 3X3 matrices, only the ones having a
      * positive determinant (+1) are rotation matrices.</p>
 
-   * <p>When a rotation is defined by a matrix with truncated values
-   * (typically when it is extracted from a technical sheet where only
-   * four to five significant digits are available), the matrix is not
-   * orthogonal anymore. This constructor handles this case
-   * transparently by using a copy of the given matrix and applying a
-   * correction to the copy in order to perfect its orthogonality. If
-   * the Frobenius norm of the correction needed is above the given
-   * threshold, then the matrix is considered to be too far from a
-   * true rotation matrix and an exception is thrown.</p>
+     * <p>When a rotation is defined by a matrix with truncated values
+     * (typically when it is extracted from a technical sheet where only
+     * four to five significant digits are available), the matrix is not
+     * orthogonal anymore. This constructor handles this case
+     * transparently by using a copy of the given matrix and applying a
+     * correction to the copy in order to perfect its orthogonality. If
+     * the Frobenius norm of the correction needed is above the given
+     * threshold, then the matrix is considered to be too far from a
+     * true rotation matrix and an exception is thrown.</p>
 
      * @param m rotation matrix
      * @param threshold convergence threshold for the iterative
@@ -1327,30 +1327,32 @@ public class Rotation implements Serializable {
                 i - 1);
     }
 
-  /** Compute the <i>distance</i> between two rotations.
-   * <p>The <i>distance</i> is intended here as a way to check if two
-   * rotations are almost similar (i.e. they transform vectors the same way)
-   * or very different. It is mathematically defined as the angle of
-   * the rotation r that prepended to one of the rotations gives the other
-   * one: \(r_1(r) = r_2\)
-   * </p>
-   * <p>This distance is an angle between 0 and &pi;. Its value is the smallest
-   * possible upper bound of the angle in radians between r<sub>1</sub>(v)
-   * and r<sub>2</sub>(v) for all possible vectors v. This upper bound is
-   * reached for some v. The distance is equal to 0 if and only if the two
-   * rotations are identical.</p>
-   * <p>Comparing two rotations should always be done using this value rather
-   * than for example comparing the components of the quaternions. It is much
-   * more stable, and has a geometric meaning. Also comparing quaternions
-   * components is error prone since for example quaternions (0.36, 0.48, -0.48, -0.64)
-   * and (-0.36, -0.48, 0.48, 0.64) represent exactly the same rotation despite
-   * their components are different (they are exact opposites).</p>
-   * @param r1 first rotation
-   * @param r2 second rotation
-   * @return <i>distance</i> between r1 and r2
-   */
-  public static double distance(Rotation r1, Rotation r2) {
-      return r1.composeInverseInternal(r2).getAngle();
-  }
+    /**
+     * Compute the <i>distance</i> between two rotations.
+     * <p>The <i>distance</i> is intended here as a way to check if two
+     * rotations are almost similar (i.e. they transform vectors the same way)
+     * or very different. It is mathematically defined as the angle of
+     * the rotation r that prepended to one of the rotations gives the other
+     * one: \(r_1(r) = r_2\)
+     * </p>
+     * <p>This distance is an angle between 0 and &pi;. Its value is the smallest
+     * possible upper bound of the angle in radians between r<sub>1</sub>(v)
+     * and r<sub>2</sub>(v) for all possible vectors v. This upper bound is
+     * reached for some v. The distance is equal to 0 if and only if the two
+     * rotations are identical.</p>
+     * <p>Comparing two rotations should always be done using this value rather
+     * than for example comparing the components of the quaternions. It is much
+     * more stable, and has a geometric meaning. Also comparing quaternions
+     * components is error prone since for example quaternions (0.36, 0.48, -0.48, -0.64)
+     * and (-0.36, -0.48, 0.48, 0.64) represent exactly the same rotation despite
+     * their components are different (they are exact opposites).</p>
+     *
+     * @param r1 first rotation
+     * @param r2 second rotation
+     * @return <i>distance</i> between r1 and r2
+     */
+    public static double distance(Rotation r1, Rotation r2) {
+        return r1.composeInverseInternal(r2).getAngle();
+    }
 
 }
