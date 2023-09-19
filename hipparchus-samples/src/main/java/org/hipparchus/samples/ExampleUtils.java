@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,7 +29,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -40,10 +39,35 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
+/** Graphics utilities for examples.
+ */
 public class ExampleUtils {
 
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public ExampleUtils() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
+    /** Display frame. */
     @SuppressWarnings("serial")
     public static class ExampleFrame extends JFrame {
+
+        /** Empty constructor.
+         * <p>
+         * This constructor is not strictly necessary, but it prevents spurious
+         * javadoc warnings with JDK 18 and later.
+         * </p>
+         * @since 3.0
+         */
+        public ExampleFrame() {
+            // nothing to do
+        }
 
         /**
          * Returns the main panel which should be printed by the screenshot action.
@@ -58,6 +82,9 @@ public class ExampleUtils {
         }
     }
 
+    /** Display example.
+     * @param frame frame to display
+     */
     public static void showExampleFrame(final ExampleFrame frame) {
         Runnable r = new Runnable() {
             public void run() {
@@ -108,7 +135,14 @@ public class ExampleUtils {
         return image;
     }
 
-    public static BufferedImage resizeImage(BufferedImage originalImage, int width, int height, int type) throws IOException {
+    /** Resize an image.
+     * @param originalImage original image
+     * @param width desired width
+     * @param height desired height
+     * @param type type of the create image
+     * @return resized image
+     */
+    public static BufferedImage resizeImage(BufferedImage originalImage, int width, int height, int type) {
         BufferedImage resizedImage = new BufferedImage(width, height, type);
         Graphics2D g = resizedImage.createGraphics();
         g.drawImage(originalImage, 0, 0, width, height, null);

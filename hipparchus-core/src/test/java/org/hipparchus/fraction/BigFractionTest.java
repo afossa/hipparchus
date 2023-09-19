@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -699,6 +699,14 @@ public class BigFractionTest {
                 BigFraction.convergent(value, 20, (p, q) -> FastMath.abs(p / (double) q - value) < 1.0e-6).getKey());
         Assert.assertEquals(new BigFraction(312689, 99532),
                 BigFraction.convergent(value, 20, (p, q) -> FastMath.abs(p / (double) q - value) < 1.0e-10).getKey());
+    }
+
+    @Test
+    public void testOutOfRange() {
+        BigFraction f = new BigFraction(new BigInteger("1175443811202636889584648110261699215671929253339678037082566183036829784156100300341131818417591797406644569806405529752410539491566888996766640542430075310377605462098357361563685103574645710283612852841417362211504458393792053529953230572830415970785545248189857341548686469982966457542855773477057255734051"),
+                                        new BigInteger("32626522339992622633551470546282737778505821290344832738793182277348616222987431136114480634269341408071340993046760559082031250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"));
+        // reference value compured using Emacs-calc with 20 digits
+        Assert.assertEquals(36.027247984128935385, f.doubleValue(), 1.0e-15);
     }
 
 }

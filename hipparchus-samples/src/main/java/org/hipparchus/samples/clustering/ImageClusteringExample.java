@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,18 +59,39 @@ import org.hipparchus.samples.ExampleUtils.ExampleFrame;
 @SuppressWarnings("serial")
 public class ImageClusteringExample {
 
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public ImageClusteringExample() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
+    /** Main frame for displaying clusters. */
     public static class Display extends ExampleFrame {
 
+        /** Reference image. */
         private BufferedImage referenceImage;
+
+        /** Cluster image. */
         private BufferedImage clusterImage;
 
+        /** Reference raster. */
         private Raster referenceRaster;
 
+        /** Painter for the clusters. */
         private ImagePainter painter;
 
+        /** Spinner. */
         private JSpinner clusterSizeSpinner;
 
-        public Display() throws Exception {
+        /** Simple constructor.
+         * @throws IOException if image cannot be created
+         */
+        public Display() throws IOException {
             setTitle("Hipparchus: Image Clustering Example");
             setSize(900, 350);
 
@@ -126,6 +148,8 @@ public class ImageClusteringExample {
             });
         }
 
+        /** Display clusters.
+         */
         private void clusterImage() {
             List<PixelClusterable> pixels = new ArrayList<PixelClusterable>();
             for (int row = 0; row < referenceImage.getHeight(); row++) {
@@ -150,18 +174,29 @@ public class ImageClusteringExample {
             Display.this.repaint();
         }
 
+        /** Container for one pixel that can be used in clusters. */
         private class PixelClusterable implements Clusterable {
 
+            /** Abscissa. */
             private final int x;
+
+            /** Ordinate. */
             private final int y;
+
+            /** Color. */
             private double[] color;
 
+            /** Simple constructor.
+             * @param x abscissa
+             * @param y ordinate
+             */
             public PixelClusterable(int x, int y) {
                 this.x = x;
                 this.y = y;
                 this.color = null;
             }
 
+            /** {@inheritDoc} */
             @Override
             public double[] getPoint() {
                 if (color == null) {
@@ -172,37 +207,57 @@ public class ImageClusteringExample {
 
         }
 
+        /** Painter for clusters. */
         private class ImagePainter extends Component {
 
+            /** Width. */
             private int width;
+
+            /** Height. */
             private int height;
 
+            /** Simple constructor.
+             * @param width width
+             * @param height height
+             */
             public ImagePainter(int width, int height) {
                 this.width = width;
                 this.height = height;
             }
 
+            /** {@inheritDoc} */
+            @Override
             public Dimension getPreferredSize() {
                 return new Dimension(width, height);
             }
 
+            /** {@inheritDoc} */
             @Override
             public Dimension getMinimumSize() {
                 return getPreferredSize();
             }
 
+            /** {@inheritDoc} */
             @Override
             public Dimension getMaximumSize() {
                 return getPreferredSize();
             }
 
+            /** {@inheritDoc} */
+            @Override
             public void paint(Graphics g) {
                 g.drawImage(clusterImage, 0, 0, this);
             }
+
         }
+
     }
 
-    public static void main(String[] args) throws Exception {
+    /** Program entry point.
+     * @param args program arguments (unused here)
+     * @throws IOException if display frame cannot be created.
+     */
+    public static void main(String[] args) throws IOException {
         ExampleUtils.showExampleFrame(new Display());
     }
 

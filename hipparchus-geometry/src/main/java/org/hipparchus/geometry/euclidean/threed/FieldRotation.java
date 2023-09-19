@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -567,7 +567,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(1, 0, 0));
                 return buildArray(v1.getY().negate().atan2(v1.getZ()),
-                                  safeAsin(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAsin(v2::getZ, v2::getX, v2::getY),
                                   v2.getY().negate().atan2(v2.getX()));
 
             } else if (order == RotationOrder.XZY) {
@@ -580,7 +580,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 1, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(1, 0, 0));
                 return buildArray(v1.getZ().atan2(v1.getY()),
-                                  safeAsin(v2, v2::getY, v2::getZ, v2::getX).negate(),
+                                  safeAsin(v2::getY, v2::getZ, v2::getX).negate(),
                                   v2.getZ().atan2(v2.getX()));
 
             } else if (order == RotationOrder.YXZ) {
@@ -593,7 +593,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
                 return buildArray(v1.getX().atan2(v1.getZ()),
-                                  safeAsin(v2, v2::getZ, v2::getX, v2::getY).negate(),
+                                  safeAsin(v2::getZ, v2::getX, v2::getY).negate(),
                                   v2.getX().atan2(v2.getY()));
 
             } else if (order == RotationOrder.YZX) {
@@ -606,7 +606,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
                 return buildArray(v1.getZ().negate().atan2(v1.getX()),
-                                  safeAsin(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAsin(v2::getX, v2::getY, v2::getZ),
                                   v2.getZ().negate().atan2(v2.getY()));
 
             } else if (order == RotationOrder.ZXY) {
@@ -619,7 +619,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 1, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
                 return buildArray(v1.getX().negate().atan2(v1.getY()),
-                                  safeAsin(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAsin(v2::getY, v2::getZ, v2::getX),
                                   v2.getX().negate().atan2(v2.getZ()));
 
             } else if (order == RotationOrder.ZYX) {
@@ -632,7 +632,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
                 return buildArray(v1.getY().atan2(v1.getX()),
-                                  safeAsin(v2, v2::getX, v2::getY, v2::getZ).negate(),
+                                  safeAsin(v2::getX, v2::getY, v2::getZ).negate(),
                                   v2.getY().atan2(v2.getZ()));
 
             } else if (order == RotationOrder.XYX) {
@@ -645,7 +645,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(1, 0, 0));
                 return buildArray(v1.getY().atan2(v1.getZ().negate()),
-                                  safeAcos(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAcos(v2::getX, v2::getY, v2::getZ),
                                   v2.getY().atan2(v2.getZ()));
 
             } else if (order == RotationOrder.XZX) {
@@ -658,7 +658,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(1, 0, 0));
                 return buildArray(v1.getZ().atan2(v1.getY()),
-                                  safeAcos(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAcos(v2::getX, v2::getY, v2::getZ),
                                   v2.getZ().atan2(v2.getY().negate()));
 
             } else if (order == RotationOrder.YXY) {
@@ -671,7 +671,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 1, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
                 return buildArray(v1.getX().atan2(v1.getZ()),
-                                  safeAcos(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAcos(v2::getY, v2::getZ, v2::getX),
                                   v2.getX().atan2(v2.getZ().negate()));
 
             } else if (order == RotationOrder.YZY) {
@@ -684,7 +684,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 1, 0));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
                 return buildArray(v1.getZ().atan2(v1.getX().negate()),
-                                  safeAcos(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAcos(v2::getY, v2::getZ, v2::getX),
                                   v2.getZ().atan2(v2.getX()));
 
             } else if (order == RotationOrder.ZXZ) {
@@ -697,7 +697,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
                 return buildArray(v1.getX().atan2(v1.getY().negate()),
-                                  safeAcos(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAcos(v2::getZ, v2::getX, v2::getY),
                                   v2.getX().atan2(v2.getY()));
 
             } else { // last possibility is ZYZ
@@ -710,7 +710,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
                 final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
                 return buildArray(v1.getY().atan2(v1.getX()),
-                                  safeAcos(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAcos(v2::getZ, v2::getX, v2::getY),
                                   v2.getY().atan2(v2.getX().negate()));
 
             }
@@ -725,7 +725,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_I);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_K);
                 return buildArray(v2.getY().negate().atan2(v2.getZ()),
-                                  safeAsin(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAsin(v2::getX, v2::getY, v2::getZ),
                                   v1.getY().negate().atan2(v1.getX()));
 
             } else if (order == RotationOrder.XZY) {
@@ -738,7 +738,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_I);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_J);
                 return buildArray(v2.getZ().atan2(v2.getY()),
-                                  safeAsin(v2, v2::getX, v2::getY, v2::getZ).negate(),
+                                  safeAsin(v2::getX, v2::getY, v2::getZ).negate(),
                                   v1.getZ().atan2(v1.getX()));
 
             } else if (order == RotationOrder.YXZ) {
@@ -751,7 +751,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_J);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_K);
                 return buildArray(v2.getX().atan2(v2.getZ()),
-                                  safeAsin(v2, v2::getY, v2::getZ, v2::getX).negate(),
+                                  safeAsin(v2::getY, v2::getZ, v2::getX).negate(),
                                   v1.getX().atan2(v1.getY()));
 
             } else if (order == RotationOrder.YZX) {
@@ -764,7 +764,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_J);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_I);
                 return buildArray(v2.getZ().negate().atan2(v2.getX()),
-                                  safeAsin(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAsin(v2::getY, v2::getZ, v2::getX),
                                   v1.getZ().negate().atan2(v1.getY()));
 
             } else if (order == RotationOrder.ZXY) {
@@ -777,7 +777,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_K);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_J);
                 return buildArray(v2.getX().negate().atan2(v2.getY()),
-                                  safeAsin(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAsin(v2::getZ, v2::getX, v2::getY),
                                   v1.getX().negate().atan2(v1.getZ()));
 
             } else if (order == RotationOrder.ZYX) {
@@ -790,7 +790,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_K);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_I);
                 return buildArray(v2.getY().atan2(v2.getX()),
-                                  safeAsin(v2, v2::getZ, v2::getX, v2::getY).negate(),
+                                  safeAsin(v2::getZ, v2::getX, v2::getY).negate(),
                                   v1.getY().atan2(v1.getZ()));
 
             } else if (order == RotationOrder.XYX) {
@@ -803,7 +803,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_I);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_I);
                 return buildArray(v2.getY().atan2(v2.getZ().negate()),
-                                  safeAcos(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAcos(v2::getX, v2::getY, v2::getZ),
                                   v1.getY().atan2(v1.getZ()));
 
             } else if (order == RotationOrder.XZX) {
@@ -816,7 +816,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_I);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_I);
                 return buildArray(v2.getZ().atan2(v2.getY()),
-                                  safeAcos(v2, v2::getX, v2::getY, v2::getZ),
+                                  safeAcos(v2::getX, v2::getY, v2::getZ),
                                   v1.getZ().atan2(v1.getY().negate()));
 
             } else if (order == RotationOrder.YXY) {
@@ -829,7 +829,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_J);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_J);
                 return buildArray(v2.getX().atan2(v2.getZ()),
-                                  safeAcos(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAcos(v2::getY, v2::getZ, v2::getX),
                                   v1.getX().atan2(v1.getZ().negate()));
 
             } else if (order == RotationOrder.YZY) {
@@ -842,7 +842,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_J);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_J);
                 return buildArray(v2.getZ().atan2(v2.getX().negate()),
-                                  safeAcos(v2, v2::getY, v2::getZ, v2::getX),
+                                  safeAcos(v2::getY, v2::getZ, v2::getX),
                                   v1.getZ().atan2(v1.getX()));
 
             } else if (order == RotationOrder.ZXZ) {
@@ -855,7 +855,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_K);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_K);
                 return buildArray(v2.getX().atan2(v2.getY().negate()),
-                                  safeAcos(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAcos(v2::getZ, v2::getX, v2::getY),
                                   v1.getX().atan2(v1.getY()));
 
             } else { // last possibility is ZYZ
@@ -868,7 +868,7 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
                 FieldVector3D<T> v1 = applyTo(Vector3D.PLUS_K);
                 FieldVector3D<T> v2 = applyInverseTo(Vector3D.PLUS_K);
                 return buildArray(v2.getY().atan2(v2.getX()),
-                                  safeAcos(v2, v2::getZ, v2::getX, v2::getY),
+                                  safeAcos(v2::getZ, v2::getX, v2::getY),
                                   v1.getY().atan2(v1.getX().negate()));
 
             }
@@ -877,15 +877,13 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
     }
 
     /** Safe computation of acos(some vector coordinate) working around singularities.
-     * @param v vector
      * @param cosGetter getter for the cosine coordinate
      * @param sin1Getter getter for one of the sine coordinates
      * @param sin2Getter getter for the other sine coordinate
      * @return acos of the coordinate
      * @since 3.0
      */
-    private T safeAcos(final FieldVector3D<T> v,
-                       final Supplier<T> cosGetter,
+    private T safeAcos(final Supplier<T> cosGetter,
                        final Supplier<T> sin1Getter,
                        final Supplier<T> sin2Getter) {
         final T cos = cosGetter.get();
@@ -903,15 +901,13 @@ public class FieldRotation<T extends CalculusFieldElement<T>> implements Seriali
     }
 
     /** Safe computation of asin(some vector coordinate) working around singularities.
-     * @param v vector
      * @param sinGetter getter for the sine coordinate
      * @param cos1Getter getter for one of the cosine coordinates
      * @param cos2Getter getter for the other cosine coordinate
      * @return asin of the coordinate
      * @since 3.0
      */
-    private T safeAsin(final FieldVector3D<T> v,
-                       final Supplier<T> sinGetter,
+    private T safeAsin(final Supplier<T> sinGetter,
                        final Supplier<T> cos1Getter,
                        final Supplier<T> cos2Getter) {
         final T sin = sinGetter.get();

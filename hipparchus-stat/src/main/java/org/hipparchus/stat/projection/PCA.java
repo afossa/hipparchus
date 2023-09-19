@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -96,28 +96,28 @@ public class PCA {
         this(numC, false, true);
     }
 
-    /**
+    /** GEt number of components.
      * @return the number of components
      */
     public int getNumComponents() {
         return numC;
     }
 
-    /**
+    /** Check whether scaling (correlation) or no scaling (covariance) is used.
      * @return whether scaling (correlation) or no scaling (covariance) is used
      */
     public boolean isScale() {
         return scale;
     }
 
-    /**
+    /** Check whether scaling (correlation), if in use, adjusts for bias.
      * @return whether scaling (correlation), if in use, adjusts for bias
      */
     public boolean isBiasCorrection() {
         return biasCorrection;
     }
 
-    /**
+    /** Get principal component variances.
      * @return the principal component variances, ordered from largest to smallest, which are the eigenvalues of the covariance or correlation matrix of the fitted data
      */
     public double[] getVariance() {
@@ -125,7 +125,7 @@ public class PCA {
         return eigenValues.clone();
     }
 
-    /**
+    /** Get by column center (or mean) of the fitted data.
      * @return the by column center (or mean) of the fitted data
      */
     public double[] getCenter() {

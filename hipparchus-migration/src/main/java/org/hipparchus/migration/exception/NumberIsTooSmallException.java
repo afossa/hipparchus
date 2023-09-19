@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -76,15 +76,15 @@ public class NumberIsTooSmallException extends MathIllegalNumberException {
         this.boundIsAllowed = boundIsAllowed;
     }
 
-    /**
-     * @return {@code true} if the minimum is included in the allowed range.
+    /** Check if the minimum is included in the allowed range.
+     * @return {@code true} if the minimum is included in the allowed range
      */
     public boolean getBoundIsAllowed() { // NOPMD - this method name is for a legacy API we cannot change
         return boundIsAllowed;
     }
 
-    /**
-     * @return the minimum.
+    /** Get minimum.
+     * @return the minimum
      */
     public Number getMin() {
         return min;

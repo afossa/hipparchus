@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -168,7 +168,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
         this.qrRankingThreshold = qrRankingThreshold;
     }
 
-    /**
+    /** Build new instance with initial step bound factor.
      * @param newInitialStepBoundFactor Positive input variable used in
      * determining the initial step bound. This bound is set to the
      * product of initialStepBoundFactor and the euclidean norm of
@@ -187,7 +187,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
                 qrRankingThreshold);
     }
 
-    /**
+    /** Build new instance with cost relative tolerance.
      * @param newCostRelativeTolerance Desired relative error in the sum of squares.
      * @return a new instance.
      */
@@ -200,7 +200,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
                 qrRankingThreshold);
     }
 
-    /**
+    /** Build new instance with parameter relative tolerance.
      * @param newParRelativeTolerance Desired relative error in the approximate solution
      * parameters.
      * @return a new instance.
@@ -214,9 +214,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
                 qrRankingThreshold);
     }
 
-    /**
-     * Modifies the given parameter.
-     *
+    /** Build new instance with ortho tolerance.
      * @param newOrthoTolerance Desired max cosine on the orthogonality between
      * the function vector and the columns of the Jacobian.
      * @return a new instance.
@@ -230,7 +228,7 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
                 qrRankingThreshold);
     }
 
-    /**
+    /** Build new instance with ranking threshold.
      * @param newQRRankingThreshold Desired threshold for QR ranking.
      * If the squared norm of a column vector is smaller or equal to this
      * threshold during QR decomposition, it is considered to be a zero vector
@@ -581,18 +579,18 @@ public class LevenbergMarquardtOptimizer implements LeastSquaresOptimizer {
          * @param jacNorm Norms of the columns of the jacobian matrix.
          * @param beta Coefficients of the Householder transforms vectors.
          */
-        InternalData(double[][] weightedJacobian, // NOPMD - staring array references is intentional and documented here
-                     int[] permutation,           // NOPMD - staring array references is intentional and documented here
+        InternalData(double[][] weightedJacobian,
+                     int[] permutation,
                      int rank,
-                     double[] diagR,              // NOPMD - staring array references is intentional and documented here
-                     double[] jacNorm,            // NOPMD - staring array references is intentional and documented here
-                     double[] beta) {             // NOPMD - staring array references is intentional and documented here
-            this.weightedJacobian = weightedJacobian;
-            this.permutation = permutation;
+                     double[] diagR,
+                     double[] jacNorm,
+                     double[] beta) {
+            this.weightedJacobian = weightedJacobian; // NOPMD - staring array references is intentional and documented here
+            this.permutation = permutation;           // NOPMD - staring array references is intentional and documented here
             this.rank = rank;
-            this.diagR = diagR;
-            this.jacNorm = jacNorm;
-            this.beta = beta;
+            this.diagR = diagR;                       // NOPMD - staring array references is intentional and documented here
+            this.jacNorm = jacNorm;                   // NOPMD - staring array references is intentional and documented here
+            this.beta = beta;                         // NOPMD - staring array references is intentional and documented here
         }
     }
 

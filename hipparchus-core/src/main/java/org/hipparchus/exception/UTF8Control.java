@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,6 +39,17 @@ import java.util.ResourceBundle;
  */
 public class UTF8Control extends ResourceBundle.Control {
 
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public UTF8Control() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
     /** {@inheritDoc} */
     @Override
     public ResourceBundle newBundle(final String baseName, final Locale locale, final String format,
@@ -62,7 +73,7 @@ public class UTF8Control extends ResourceBundle.Control {
             stream = loader.getResourceAsStream(resourceName);
         }
         if (stream != null) {
-            try {
+            try { // NOPMD
                 // Only this line is changed to make it to read properties files as UTF-8.
                 bundle = new PropertyResourceBundle(new InputStreamReader(stream, "UTF-8"));
             } finally {

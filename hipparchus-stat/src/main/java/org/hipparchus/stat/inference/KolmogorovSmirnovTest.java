@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -109,7 +109,7 @@ import org.hipparchus.util.MathUtils;
  * Note that [1] contains an error in computing h, refer to <a
  * href="https://issues.apache.org/jira/browse/MATH-437">MATH-437</a> for details.
  */
-public class KolmogorovSmirnovTest {
+public class KolmogorovSmirnovTest { // NOPMD - this is not a Junit test class, PMD false positive here
 
     /**
      * Bound on the number of partial sums in {@link #ksSum(double, double, int)}

@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -499,7 +499,7 @@ public class MillerUpdatingRegression implements UpdatingMultipleLinearRegressio
      */
     private double[] cov(int nreq) {
         if (this.nobs <= nreq) {
-            return null;
+            return null; // NOPMD
         }
         double rnk = 0.0;
         for (int i = 0; i < nreq; i++) {
@@ -625,7 +625,7 @@ public class MillerUpdatingRegression implements UpdatingMultipleLinearRegressio
         double sumyy;
         final int offXX = (nvars - in) * (nvars - in - 1) / 2;
         if (in < -1 || in >= nvars) {
-            return null;
+            return null; // NOPMD
         }
         final int nvm = nvars - 1;
         final int base_pos = r.length - (nvm - in) * (nvm - in + 1) / 2;

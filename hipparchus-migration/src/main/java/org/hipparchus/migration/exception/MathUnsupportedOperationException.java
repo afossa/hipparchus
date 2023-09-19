@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,7 +44,7 @@ public class MathUnsupportedOperationException extends MathRuntimeException {
     public MathUnsupportedOperationException() {
         this(LocalizedFormats.UNSUPPORTED_OPERATION);
     }
-    /**
+    /** Simple constructor.
      * @param pattern Message pattern providing the specific context of
      * the error.
      * @param args Arguments.

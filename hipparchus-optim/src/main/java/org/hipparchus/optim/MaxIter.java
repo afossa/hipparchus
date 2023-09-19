@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,7 +32,7 @@ public class MaxIter implements OptimizationData {
     /** Allowed number of evalutations. */
     private final int max;
 
-    /**
+    /** Simple constructor.
      * @param max Allowed number of iterations.
      * @throws MathIllegalArgumentException if {@code max <= 0}.
      */

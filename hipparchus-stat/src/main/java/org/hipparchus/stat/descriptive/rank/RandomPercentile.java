@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -881,7 +881,7 @@ public class RandomPercentile
             mergeCandidates.remove(0);
             mergeCandidates.remove(0);
             // If these are the last level-l buffers, remove the empty list
-            if (registry.get(l).size() == 0) {
+            if (registry.get(l).isEmpty()) {
                 registry.remove(l);
             }
             // Merge the buffers

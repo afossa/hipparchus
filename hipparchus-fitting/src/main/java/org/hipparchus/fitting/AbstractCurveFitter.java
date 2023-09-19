@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -54,6 +54,18 @@ import org.hipparchus.optim.nonlinear.vector.leastsquares.LevenbergMarquardtOpti
  *
  */
 public abstract class AbstractCurveFitter {
+
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public AbstractCurveFitter() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
     /**
      * Fits a curve.
      * This method computes the coefficients of the curve that best
@@ -98,7 +110,7 @@ public abstract class AbstractCurveFitter {
         /** Observations. */
         private final double[] points;
 
-        /**
+        /** Simple constructor.
          * @param f function to fit.
          * @param observations Observations.
          */
@@ -114,8 +126,8 @@ public abstract class AbstractCurveFitter {
             }
         }
 
-        /**
-         * @return the model function values.
+        /** Get model function value.
+         * @return the model function value
          */
         public MultivariateVectorFunction getModelFunction() {
             return new MultivariateVectorFunction() {
@@ -133,8 +145,8 @@ public abstract class AbstractCurveFitter {
             };
         }
 
-        /**
-         * @return the model function Jacobian.
+        /** Get model function Jacobian.
+         * @return the model function Jacobian
          */
         public MultivariateMatrixFunction getModelFunctionJacobian() {
             return new MultivariateMatrixFunction() {

@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -295,10 +295,10 @@ public class AdamsMoultonFieldIntegrator<T extends CalculusFieldElement<T>> exte
          * @param scaled current scaled first derivative
          * @param state state to correct (will be overwritten after visit)
          */
-        Corrector(final T[] previous, final T[] scaled, final T[] state) { // NOPMD - array reference storage is intentional and documented here
-            this.previous = previous;
-            this.scaled   = scaled;
-            this.after    = state;
+        Corrector(final T[] previous, final T[] scaled, final T[] state) {
+            this.previous = previous; // NOPMD - array reference storage is intentional and documented here
+            this.scaled   = scaled;   // NOPMD - array reference storage is intentional and documented here
+            this.after    = state;    // NOPMD - array reference storage is intentional and documented here
             this.before   = state.clone();
         }
 

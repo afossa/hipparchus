@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -425,7 +425,7 @@ public class JacobianMatrices {
                 // Lazy initialization
                 Constructor<ParameterConfiguration> configCtr =
                                 ParameterConfiguration.class.getDeclaredConstructor(String.class, Double.TYPE);
-                configCtr.setAccessible(true);
+                configCtr.setAccessible(true); // NOPMD
                 @SuppressWarnings("unchecked")
                 Constructor<NamedParameterJacobianProvider> providerCtr =
                 (Constructor<NamedParameterJacobianProvider>)
@@ -433,7 +433,7 @@ public class JacobianMatrices {
                                                                                                     double[].class,
                                                                                                     ParametersController.class,
                                                                                                     ParameterConfiguration[].class);
-                providerCtr.setAccessible(true);
+                providerCtr.setAccessible(true); // NOPMD
                 if (dirtyParameter && (paramDim != 0)) {
                     ParameterConfiguration [] immutable = new ParameterConfiguration[selectedParameters.length];
                     for (int i = 0; i < selectedParameters.length; ++i) {

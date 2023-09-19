@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -392,9 +392,9 @@ public class MultivariateNormalMixtureExpectationMaximization {
          * Create a data row.
          * @param data Data to use for the row, a reference to the data is stored
          */
-        DataRow(final double[] data) { // NOPMD - storing a reference to the array is intentional and documented here
+        DataRow(final double[] data) {
             // Store reference.
-            row = data;
+            row = data; // NOPMD - storing a reference to the array is intentional and documented here
             // Compute mean.
             mean = 0d;
             for (int i = 0; i < data.length; i++) {

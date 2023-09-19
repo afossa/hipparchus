@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -120,7 +120,7 @@ public class TricubicInterpolatingFunction
     /** Set of cubic splines pacthing the whole data grid */
     private final TricubicFunction[][][] splines;
 
-    /**
+    /** Simple constructor.
      * @param x Sample values of the x-coordinate, in increasing order.
      * @param y Sample values of the y-coordinate, in increasing order.
      * @param z Sample values of the y-coordinate, in increasing order.

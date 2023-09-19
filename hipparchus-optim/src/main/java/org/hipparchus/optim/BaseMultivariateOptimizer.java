@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,7 +43,7 @@ public abstract class BaseMultivariateOptimizer<P>
     /** Upper bounds. */
     private double[] upperBound;
 
-    /**
+    /** Simple constructor.
      * @param checker Convergence checker.
      */
     protected BaseMultivariateOptimizer(ConvergenceChecker<P> checker) {
@@ -110,13 +110,13 @@ public abstract class BaseMultivariateOptimizer<P>
     public double[] getStartPoint() {
         return start == null ? null : start.clone();
     }
-    /**
+    /** Get lower bounds.
      * @return the lower bounds, or {@code null} if not set.
      */
     public double[] getLowerBound() {
         return lowerBound == null ? null : lowerBound.clone();
     }
-    /**
+    /** Get upper bounds.
      * @return the upper bounds, or {@code null} if not set.
      */
     public double[] getUpperBound() {

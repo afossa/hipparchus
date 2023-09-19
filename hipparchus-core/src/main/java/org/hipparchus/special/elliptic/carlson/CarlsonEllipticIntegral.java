@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -50,6 +50,14 @@ import org.hipparchus.util.FastMath;
  * for elliptic integrands with the square root of two quadratic factors".
  * They are also described in <a href="https://dlmf.nist.gov/19.36#i">section 19.36(i)</a>
  * of Digital Library of Mathematical Functions.
+ * </p>
+ * <p>
+ * <em>
+ * Beware that when computing elliptic integrals in the complex plane,
+ * many issues arise due to branch cuts. See the
+ * <a href="https://www.hipparchus.org/hipparchus-core/special.html#Elliptic_functions_and_integrals">user guide</a>
+ * for a thorough explanation.
+ * </em>
  * </p>
  * @since 2.0
  */

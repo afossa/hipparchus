@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -55,22 +55,25 @@ public class NonSymmetricMatrixException extends MathIllegalArgumentException {
         this.threshold = threshold;
     }
 
-    /**
-     * @return the row index of the entry.
+    /** Get row index of the entry.
+     * @return the row index of the entry
      */
     public int getRow() {
         return row;
     }
-    /**
-     * @return the column index of the entry.
+
+    /** Get column index of the entry.
+     * @return the column index of the entry
      */
     public int getColumn() {
         return column;
     }
-    /**
-     * @return the relative symmetry threshold.
+
+    /** Get relative symmetry threshold.
+     * @return the relative symmetry threshold
      */
     public double getThreshold() {
         return threshold;
     }
+
 }

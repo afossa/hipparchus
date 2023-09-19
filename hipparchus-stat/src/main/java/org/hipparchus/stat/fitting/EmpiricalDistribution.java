@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -372,10 +372,10 @@ public class EmpiricalDistribution extends AbstractRealDistribution {
          * @param in double[] array holding the data, a reference to the array will be stored
          * @throws NullArgumentException if in is null
          */
-        ArrayDataAdapter(double[] in) throws NullArgumentException { // NOPMD - storing a reference to the array is intentional and documented here
+        ArrayDataAdapter(double[] in) throws NullArgumentException {
             super();
             MathUtils.checkNotNull(in);
-            inputArray = in;
+            inputArray = in; // NOPMD - storing a reference to the array is intentional and documented here
         }
 
         /** {@inheritDoc} */

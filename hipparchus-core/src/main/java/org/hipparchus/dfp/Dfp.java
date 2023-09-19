@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -356,19 +356,19 @@ public class Dfp implements CalculusFieldElement<Dfp> {
         final char[] striped = new char[getRadixDigits() * rsize + offset * 2];
 
         // Check some special cases
-        if (s.equals(POS_INFINITY_STRING)) {
+        if (POS_INFINITY_STRING.equals(s)) {
             sign = (byte) 1;
             nans = INFINITE;
             return;
         }
 
-        if (s.equals(NEG_INFINITY_STRING)) {
+        if (NEG_INFINITY_STRING.equals(s)) {
             sign = (byte) -1;
             nans = INFINITE;
             return;
         }
 
-        if (s.equals(NAN_STRING)) {
+        if (NAN_STRING.equals(s)) {
             sign = (byte) 1;
             nans = QNAN;
             return;
@@ -2314,7 +2314,7 @@ public class Dfp implements CalculusFieldElement<Dfp> {
         }
 
         // Find the largest p such that p < e
-        for (p = 1000000000; p > ae; p /= 10) {
+        for (p = 1000000000; p > ae; p /= 10) { // NOPMD - empty loop is normal here
             // nothing to do
         }
 

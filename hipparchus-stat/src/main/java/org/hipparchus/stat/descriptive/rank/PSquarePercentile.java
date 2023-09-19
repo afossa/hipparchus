@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -287,14 +287,14 @@ public class PSquarePercentile extends AbstractStorelessUnivariateStatistic
         return pValue;
     }
 
-    /**
+    /** Get quantile estimated by this statistic.
      * @return the quantile estimated by this statistic
      */
     public double getQuantile() {
         return quantile;
     }
 
-    /**
+    /** Get maximum in the data set added to this statistic.
      * @return maximum in the data set added to this statistic
      */
     private double maximum() {
@@ -307,7 +307,7 @@ public class PSquarePercentile extends AbstractStorelessUnivariateStatistic
         return val;
     }
 
-    /**
+    /** Get minimum in the data set added to this statistic.
      * @return minimum in the data set added to this statistic
      */
     private double minimum() {

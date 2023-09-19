@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -98,7 +98,7 @@ public class Array2DRowRealMatrix extends AbstractRealMatrix implements Serializ
      * @throws NullArgumentException if {@code d} is {@code null}.
      * @see #Array2DRowRealMatrix(double[][])
      */
-    public Array2DRowRealMatrix(final double[][] d, final boolean copyArray) // NOPMD - array copy is taken care of by parameter
+    public Array2DRowRealMatrix(final double[][] d, final boolean copyArray)
         throws MathIllegalArgumentException,
         NullArgumentException {
         if (copyArray) {
@@ -121,7 +121,7 @@ public class Array2DRowRealMatrix extends AbstractRealMatrix implements Serializ
                                                            d[r].length, nCols);
                 }
             }
-            data = d;
+            data = d; // NOPMD - array copy is taken care of by parameter
         }
     }
 

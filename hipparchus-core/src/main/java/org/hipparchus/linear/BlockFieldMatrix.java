@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -146,7 +146,7 @@ public class BlockFieldMatrix<T extends FieldElement<T>> extends AbstractFieldMa
      * @see #BlockFieldMatrix(FieldElement[][])
      */
     public BlockFieldMatrix(final int rows, final int columns,
-                            final T[][] blockData, final boolean copyArray) // NOPMD - array copy is taken care of by parameter
+                            final T[][] blockData, final boolean copyArray)
         throws MathIllegalArgumentException {
         super(extractField(blockData), rows, columns);
         this.rows    = rows;
@@ -161,7 +161,7 @@ public class BlockFieldMatrix<T extends FieldElement<T>> extends AbstractFieldMa
             blocks = MathArrays.buildArray(getField(), blockRows * blockColumns, -1);
         } else {
             // reference existing array
-            blocks = blockData;
+            blocks = blockData; // NOPMD - array copy is taken care of by parameter
         }
 
         int index = 0;

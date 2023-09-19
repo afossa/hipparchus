@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -61,6 +61,24 @@ import com.xeiam.xchart.XChartPanel;
  */
 public class IntegerDistributionComparison {
 
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public IntegerDistributionComparison() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
+    /** Add a PDF series.
+     * @param chart chart to which series must be added
+     * @param distribution integer distribution to draw
+     * @param desc description
+     * @param lowerBound lower bound
+     * @param upperBound upper bound
+     */
     public static void addPDFSeries(Chart chart, IntegerDistribution distribution, String desc, int lowerBound, int upperBound) {
         // generates Log data
         List<Number> xData = new ArrayList<Number>();
@@ -83,6 +101,13 @@ public class IntegerDistributionComparison {
         series.setLineStyle(new BasicStroke(1.2f));
     }
 
+    /** Add a CDF series.
+     * @param chart chart to which series must be added
+     * @param distribution integer distribution to draw
+     * @param desc description
+     * @param lowerBound lower bound
+     * @param upperBound upper bound
+     */
     public static void addCDFSeries(Chart chart, IntegerDistribution distribution, String desc,
                                     int lowerBound, int upperBound) {
         // generates Log data
@@ -101,6 +126,13 @@ public class IntegerDistributionComparison {
         series.setLineStyle(new BasicStroke(1.2f));
     }
 
+    /** Create a chart.
+     * @param title chart title
+     * @param minX minimum abscissa
+     * @param maxX maximum abscissa
+     * @param position position of the legend
+     * @return created chart
+     */
     public static Chart createChart(String title, int minX, int maxX, LegendPosition position) {
         Chart chart = new ChartBuilder().width(235).height(200).build();
 
@@ -124,6 +156,14 @@ public class IntegerDistributionComparison {
         return chart;
     }
 
+    /** Create a component.
+     * @param distributionName name of the distribution
+     * @param minX minimum abscissa
+     * @param maxX maximum abscissa
+     * @param seriesText descriptions of the series
+     * @param series series
+     * @return create component
+     */
     public static JComponent createComponent(String distributionName, int minX, int maxX, String[] seriesText,
                                              IntegerDistribution... series) {
         JComponent container = new JPanel();
@@ -149,11 +189,15 @@ public class IntegerDistributionComparison {
         return container;
     }
 
+    /** Main frame for displaying distributions. */
     @SuppressWarnings("serial")
     public static class Display extends ExampleFrame {
 
+        /** Container. */
         private JComponent container;
 
+        /** Simple constructor.
+         */
         public Display() {
             setTitle("Hipparchus: Integer distributions overview");
             setSize(1320, 920);
@@ -231,6 +275,7 @@ public class IntegerDistributionComparison {
 
         }
 
+        /** {@inheritDoc} */
         @Override
         public Component getMainPanel() {
             return container;
@@ -238,6 +283,9 @@ public class IntegerDistributionComparison {
 
     }
 
+    /** Program entry point.
+     * @param args program arguments (unused here)
+     */
     public static void main(String[] args) {
         ExampleUtils.showExampleFrame(new Display());
     }

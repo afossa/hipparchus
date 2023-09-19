@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -70,6 +70,21 @@ import org.piccolo2d.nodes.PText;
  */
 public class GeometryExample {
 
+    /** Empty constructor.
+     * <p>
+     * This constructor is not strictly necessary, but it prevents spurious
+     * javadoc warnings with JDK 18 and later.
+     * </p>
+     * @since 3.0
+     */
+    public GeometryExample() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+        // nothing to do
+    }
+
+    /** Create a list of random points.
+     * @param size number of points
+     * @return random points
+     */
     public static List<Vector2D> createRandomPoints(int size) {
         RandomGenerator random = new MersenneTwister();
 
@@ -84,6 +99,10 @@ public class GeometryExample {
         return points;
     }
 
+    /** Create a circle sprite.
+     * @param samples number of points
+     * @return vectors describing the sprite
+     */
     public static List<Vector2D> createCircle(int samples) {
         List<Vector2D> points = new ArrayList<Vector2D>();
         final Vector2D center = new Vector2D(300, 300);
@@ -97,6 +116,9 @@ public class GeometryExample {
         return points;
     }
 
+    /** Create a cross sprite.
+     * @return vectors describing the sprite
+     */
     public static List<Vector2D> createCross() {
         List<Vector2D> points = new ArrayList<Vector2D>();
 
@@ -108,6 +130,9 @@ public class GeometryExample {
         return points;
     }
 
+    /** Create a canvas
+     * @return canvas
+     */
     public static PCanvas createCanvas() {
         final PCanvas canvas = new PCanvas();
         final PCamera camera = canvas.getCamera();
@@ -162,14 +187,25 @@ public class GeometryExample {
         return new Vector2D(sc.cos(), sc.sin());
     }
 
+    /** Main frame for geometry examples.
+     */
     @SuppressWarnings("serial")
     public static class Display extends ExampleFrame {
 
+        /** Points to plot. */
         private List<Vector2D> points;
+
+        /** Canvas for plotting. */
         private PCanvas canvas;
+
+        /** Container. */
         private JComponent container;
+
+        /** Control panel. */
         private JComponent controlPanel;
 
+        /** Simple constructor.
+         */
         public Display() {
             setTitle("Hipparchus: Geometry Examples");
             setSize(800, 700);
@@ -231,11 +267,14 @@ public class GeometryExample {
             paintConvexHull();
         }
 
+        /** {@inheritDoc} */
         @Override
         public Component getMainPanel() {
             return container;
         }
 
+        /** Paint a convex hull.
+         */
         public void paintConvexHull() {
             PNode pointSet = new PNode();
             for (Vector2D point : points) {
@@ -290,6 +329,9 @@ public class GeometryExample {
         }
     }
 
+    /** Main entry point.
+     * @param argv program arguments (unused here)
+     */
     public static void main(final String[] argv) {
         ExampleUtils.showExampleFrame(new Display());
     }

@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -70,7 +70,7 @@ class ConvergentsIterator {
                 this.q1 = FastMath.addExact(Math.multiplyExact(a1, q1), q0);
                 this.r1 = 1.0 / (r1 - a1);
             } catch (ArithmeticException e) { // unlike the name implies FastMath's multiplyExact() is slower
-                throw new MathIllegalStateException(LocalizedCoreFormats.FRACTION_CONVERSION_OVERFLOW, r1, p1, q1);
+                throw new MathIllegalStateException(e, LocalizedCoreFormats.FRACTION_CONVERSION_OVERFLOW, r1, p1, q1);
             }
         }
 

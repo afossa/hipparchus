@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -125,7 +125,7 @@ public class NonLinearConjugateGradientOptimizer
              new IdentityPreconditioner());
     }
 
-    /**
+    /** Simple constructor.
      * @param updateFormula formula to use for updating the &beta; parameter,
      * must be one of {@link Formula#FLETCHER_REEVES} or
      * {@link Formula#POLAK_RIBIERE}.
@@ -267,11 +267,24 @@ public class NonLinearConjugateGradientOptimizer
 
     /** Default identity preconditioner. */
     public static class IdentityPreconditioner implements Preconditioner {
+
+        /** Empty constructor.
+         * <p>
+         * This constructor is not strictly necessary, but it prevents spurious
+         * javadoc warnings with JDK 18 and later.
+         * </p>
+         * @since 3.0
+         */
+        public IdentityPreconditioner() { // NOPMD - unnecessary constructor added intentionally to make javadoc happy
+            // nothing to do
+        }
+
         /** {@inheritDoc} */
         @Override
         public double[] precondition(double[] variables, double[] r) {
             return r.clone();
         }
+
     }
 
     // Class is not used anymore (cf. MATH-1092). However, it might
