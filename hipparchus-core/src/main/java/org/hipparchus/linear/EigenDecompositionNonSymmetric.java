@@ -37,7 +37,7 @@ import org.hipparchus.util.Precision;
  * Calculates the eigen decomposition of a non-symmetric real matrix.
  * <p>
  * The eigen decomposition of matrix A is a set of two matrices:
- * \(V\) and \(D\) such that \(A V = V D\) where $\(A\),
+ * \(V\) and \(D\) such that \(A V = V D\) where \(A\),
  * \(V\) and \(D\) are all \(m \times m\) matrices.
  * <p>
  * This class is similar in spirit to the {@code EigenvalueDecomposition}
@@ -60,10 +60,11 @@ import org.hipparchus.util.Precision;
  * the real eigenvalues in 1-by-1 blocks and any complex eigenvalues, \(\lambda \pm i \mu\),
  * in 2-by-2 blocks:
  * </p>
+ * <p>
  * \[
  *   \begin{bmatrix}
- *    \lambda & \mu\\
- *    -\mu    & \lambda
+ *    \ \lambda \quad \mu\\
+ *     -\mu     \quad \lambda
  *   \end{bmatrix}
  * \]
  * </p>
@@ -165,8 +166,7 @@ public class EigenDecompositionNonSymmetric {
      *
      * @return the D matrix.
      *
-     * @see #getRealEigenvalues()
-     * @see #getImagEigenvalues()
+     * @see #getEigenvalues()
      */
     public RealMatrix getD() {
 

@@ -40,6 +40,7 @@ import org.hipparchus.util.Precision;
  * <p>Instance of this class are guaranteed to be immutable.</p>
  *
  * @author Alberto Foss&agrave;
+ * @param <T> the type of field elements
  */
 public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements Serializable {
 
@@ -174,6 +175,7 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
      * @param q1 First quaternion.
      * @param q2 Second quaternion.
      * @return the product {@code q1} and {@code q2}, in that order.
+     * @param <T> the type of field elements
      */
     public static <T extends CalculusFieldElement<T>> FieldQuaternion<T> multiply(final FieldQuaternion<T> q1,
                                                                                   final FieldQuaternion<T> q2) {
@@ -215,6 +217,7 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
      * @param q1 Quaternion.
      * @param q2 Quaternion.
      * @return the sum of {@code q1} and {@code q2}.
+     * @param <T> the type of field elements
      */
     public static <T extends CalculusFieldElement<T>> FieldQuaternion<T> add(final FieldQuaternion<T> q1,
                                                                              final FieldQuaternion<T> q2) {
@@ -240,6 +243,7 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
      * @param q1 First Quaternion.
      * @param q2 Second quaternion.
      * @return the difference between {@code q1} and {@code q2}.
+     * @param <T> the type of field elements
      */
     public static <T extends CalculusFieldElement<T>> FieldQuaternion<T> subtract(final FieldQuaternion<T> q1,
                                                                                   final FieldQuaternion<T> q2) {
@@ -265,6 +269,7 @@ public final class FieldQuaternion<T extends CalculusFieldElement<T>> implements
      * @param q1 Quaternion.
      * @param q2 Quaternion.
      * @return the dot product of {@code q1} and {@code q2}.
+     * @param <T> the type of field elements
      */
     public static <T extends CalculusFieldElement<T>> T dotProduct(final FieldQuaternion<T> q1,
                                                                    final FieldQuaternion<T> q2) {
