@@ -63,8 +63,8 @@ import org.hipparchus.util.Precision;
  * <p>
  * \[
  *   \begin{bmatrix}
- *    \ \lambda \quad \mu\\
- *     -\mu     \quad \lambda
+ *    \lambda &amp; \mu\\
+ *    -\mu    &amp; \lambda
  *   \end{bmatrix}
  * \]
  * </p>
