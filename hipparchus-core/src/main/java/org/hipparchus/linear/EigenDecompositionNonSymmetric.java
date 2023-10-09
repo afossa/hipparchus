@@ -165,8 +165,6 @@ public class EigenDecompositionNonSymmetric {
      * 2x2 blocks { {real +imaginary}, {-imaginary, real} }.
      *
      * @return the D matrix.
-     *
-     * @see #getEigenvalues()
      */
     public RealMatrix getD() {
 
