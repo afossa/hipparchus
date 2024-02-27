@@ -90,8 +90,8 @@ public class RotationTest {
         System.out.println();
     }
 
-  @Test
-  public void testIdentity() {
+    @Test
+    public void testIdentity() {
 
         Rotation r = Rotation.IDENTITY;
         checkVector(r.applyTo(Vector3D.PLUS_I), Vector3D.PLUS_I);
