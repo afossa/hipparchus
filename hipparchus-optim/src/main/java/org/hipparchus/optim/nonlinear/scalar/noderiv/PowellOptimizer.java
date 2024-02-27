@@ -25,6 +25,7 @@ import org.hipparchus.exception.LocalizedCoreFormats;
 import org.hipparchus.exception.MathIllegalArgumentException;
 import org.hipparchus.exception.MathRuntimeException;
 import org.hipparchus.optim.ConvergenceChecker;
+import org.hipparchus.optim.OptimizationData;
 import org.hipparchus.optim.PointValuePair;
 import org.hipparchus.optim.nonlinear.scalar.GoalType;
 import org.hipparchus.optim.nonlinear.scalar.LineSearch;
@@ -46,7 +47,7 @@ import org.hipparchus.util.FastMath;
  * Line search is performed by the {@link LineSearch} class.
  * <br>
  * Constraints are not supported: the call to
- * {@link #optimize(OptimizationData[]) optimize} will throw
+ * {@link #optimize(OptimizationData...)}  optimize} will throw
  * {@link MathRuntimeException} if bounds are passed to it.
  * In order to impose simple constraints, the objective function must be
  * wrapped in an adapter like
@@ -87,7 +88,7 @@ public class PowellOptimizer
      * @param abs Absolute threshold.
      * @param checker Convergence checker.
      * @throws MathIllegalArgumentException if {@code abs <= 0}.
-     * @throws MathIllegalArgumentException if {@code rel < 2 * Math.ulp(1d)}.
+     * @throws MathIllegalArgumentException if {@code rel < 2 * FastMath.ulp(1d)}.
      */
     public PowellOptimizer(double rel,
                            double abs,
@@ -106,7 +107,7 @@ public class PowellOptimizer
      * @param lineAbs Absolute threshold for the internal line search optimizer.
      * @param checker Convergence checker.
      * @throws MathIllegalArgumentException if {@code abs <= 0}.
-     * @throws MathIllegalArgumentException if {@code rel < 2 * Math.ulp(1d)}.
+     * @throws MathIllegalArgumentException if {@code rel < 2 * FastMath.ulp(1d)}.
      */
     public PowellOptimizer(double rel,
                            double abs,
@@ -142,7 +143,7 @@ public class PowellOptimizer
      * @param rel Relative threshold.
      * @param abs Absolute threshold.
      * @throws MathIllegalArgumentException if {@code abs <= 0}.
-     * @throws MathIllegalArgumentException if {@code rel < 2 * Math.ulp(1d)}.
+     * @throws MathIllegalArgumentException if {@code rel < 2 * FastMath.ulp(1d)}.
      */
     public PowellOptimizer(double rel,
                            double abs) {
@@ -157,7 +158,7 @@ public class PowellOptimizer
      * @param lineRel Relative threshold for the internal line search optimizer.
      * @param lineAbs Absolute threshold for the internal line search optimizer.
      * @throws MathIllegalArgumentException if {@code abs <= 0}.
-     * @throws MathIllegalArgumentException if {@code rel < 2 * Math.ulp(1d)}.
+     * @throws MathIllegalArgumentException if {@code rel < 2 * FastMath.ulp(1d)}.
      */
     public PowellOptimizer(double rel,
                            double abs,
@@ -290,7 +291,7 @@ public class PowellOptimizer
 
     /**
      * @throws MathRuntimeException if bounds were passed to the
-     * {@link #optimize(OptimizationData[]) optimize} method.
+     * {@link #optimize(OptimizationData...)}  optimize} method.
      */
     private void checkParameters() {
         if (getLowerBound() != null ||

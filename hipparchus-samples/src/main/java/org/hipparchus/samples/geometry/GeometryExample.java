@@ -68,7 +68,11 @@ import org.piccolo2d.nodes.PText;
  *  - select tolerance level
  *  - allow editing of the point set
  */
+//CHECKSTYLE: stop HideUtilityClassConstructor
 public class GeometryExample {
+
+    /** Tooltip. */
+    private static final String TOOLTIP = "tooltip";
 
     /** Empty constructor.
      * <p>
@@ -152,7 +156,7 @@ public class GeometryExample {
 
             public void updateToolTip(final PInputEvent event) {
                 final PNode n = event.getPickedNode();
-                final Object object = (Object) n.getAttribute("tooltip");
+                final Object object = (Object) n.getAttribute(TOOLTIP);
                 if (object != null) {
                     final String tooltipString = object.toString();
                     final Point2D p = event.getCanvasPosition();
@@ -201,9 +205,6 @@ public class GeometryExample {
         /** Container. */
         private JComponent container;
 
-        /** Control panel. */
-        private JComponent controlPanel;
-
         /** Simple constructor.
          */
         public Display() {
@@ -215,7 +216,7 @@ public class GeometryExample {
             container.add(canvas);
             container.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
-            controlPanel = new JPanel();
+            JComponent controlPanel = new JPanel();
             JButton random = new JButton("Randomize");
             controlPanel.add(random);
 
@@ -258,7 +259,8 @@ public class GeometryExample {
                 }
             });
 
-            JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, container, controlPanel);
+            JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, container,
+                                                  controlPanel);
             splitpane.setDividerLocation(600);
 
             add(splitpane);
@@ -279,7 +281,7 @@ public class GeometryExample {
             PNode pointSet = new PNode();
             for (Vector2D point : points) {
                 final PNode node = PPath.createEllipse(point.getX() - 1, point.getY() - 1, 2, 2);
-                node.addAttribute("tooltip", point);
+                node.addAttribute(TOOLTIP, point);
                 node.setPaint(Color.gray);
                 pointSet.addChild(node);
             }
@@ -292,7 +294,7 @@ public class GeometryExample {
             PNode hullNode = new PNode();
             for (Vector2D vertex : hull.getVertices()) {
                 final PPath node = PPath.createEllipse(vertex.getX() - 1, vertex.getY() - 1, 2, 2);
-                node.addAttribute("tooltip", vertex);
+                node.addAttribute(TOOLTIP, vertex);
                 node.setPaint(Color.red);
                 node.setStrokePaint(Color.red);
                 hullNode.addChild(node);

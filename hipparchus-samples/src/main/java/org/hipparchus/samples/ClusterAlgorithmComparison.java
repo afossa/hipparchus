@@ -63,6 +63,7 @@ import org.hipparchus.util.SinCos;
  * Based on
  * <a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html">scikit learn</a>.
  */
+//CHECKSTYLE: stop HideUtilityClassConstructor
 public class ClusterAlgorithmComparison {
 
     /** Empty constructor.
@@ -311,7 +312,7 @@ public class ClusterAlgorithmComparison {
     public static class ClusterPlot extends JComponent {
 
         /** Padding. */
-        private static double PAD = 10;
+        private static final double PAD = 10;
 
         /** Clusters. */
         private List<? extends Cluster<DoublePoint>> clusters;

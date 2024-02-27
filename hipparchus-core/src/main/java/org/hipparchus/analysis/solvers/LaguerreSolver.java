@@ -148,7 +148,7 @@ public class LaguerreSolver extends AbstractPolynomialSolver {
      * @return the point at which the function value is zero.
      */
     private double laguerre(double lo, double hi) {
-        final Complex c[] = ComplexUtils.convertToComplex(getCoefficients());
+        final Complex[] c = ComplexUtils.convertToComplex(getCoefficients());
 
         final Complex initial = new Complex(0.5 * (lo + hi), 0);
         final Complex z = complexSolver.solve(c, initial);
@@ -187,7 +187,31 @@ public class LaguerreSolver extends AbstractPolynomialSolver {
                                      double initial)
         throws MathIllegalArgumentException, NullArgumentException,
                MathIllegalStateException {
-        setup(Integer.MAX_VALUE,
+        return solveAllComplex(coefficients, 100_000, initial);
+    }
+    
+    /**
+     * Find all complex roots for the polynomial with the given
+     * coefficients, starting from the given initial value.
+     * <p>
+     * Note: This method is not part of the API of {@link BaseUnivariateSolver}.</p>
+     *
+     * @param coefficients Polynomial coefficients.
+     * @param maxEval Maximum number of evaluations.
+     * @param initial Start value.
+     * @return the point at which the function value is zero.
+     * @throws org.hipparchus.exception.MathIllegalStateException
+     * if the maximum number of evaluations is exceeded.
+     * @throws NullArgumentException if the {@code coefficients} is
+     * {@code null}.
+     * @throws MathIllegalArgumentException if the {@code coefficients} array is empty.
+     */
+    public Complex[] solveAllComplex(double[] coefficients,
+                                     int maxEval,
+                                     double initial)
+        throws MathIllegalArgumentException, NullArgumentException,
+               MathIllegalStateException {
+        setup(maxEval,
               new PolynomialFunction(coefficients),
               Double.NEGATIVE_INFINITY,
               Double.POSITIVE_INFINITY,
@@ -260,7 +284,7 @@ public class LaguerreSolver extends AbstractPolynomialSolver {
          * {@code null}.
          * @throws MathIllegalArgumentException if the {@code coefficients} array is empty.
          */
-        public Complex[] solveAll(Complex coefficients[], Complex initial)
+        public Complex[] solveAll(Complex[] coefficients, Complex initial)
             throws MathIllegalArgumentException, NullArgumentException,
                    MathIllegalStateException {
             if (coefficients == null) {
@@ -271,15 +295,15 @@ public class LaguerreSolver extends AbstractPolynomialSolver {
                 throw new MathIllegalArgumentException(LocalizedCoreFormats.POLYNOMIAL);
             }
             // Coefficients for deflated polynomial.
-            final Complex c[] = new Complex[n + 1];
+            final Complex[] c = new Complex[n + 1];
             for (int i = 0; i <= n; i++) {
                 c[i] = coefficients[i];
             }
 
             // Solve individual roots successively.
-            final Complex root[] = new Complex[n];
+            final Complex[] root = new Complex[n];
             for (int i = 0; i < n; i++) {
-                final Complex subarray[] = new Complex[n - i + 1];
+                final Complex[] subarray = new Complex[n - i + 1];
                 System.arraycopy(c, 0, subarray, 0, subarray.length);
                 root[i] = solve(subarray, initial);
                 // Polynomial deflation using synthetic division.
@@ -308,7 +332,7 @@ public class LaguerreSolver extends AbstractPolynomialSolver {
          * {@code null}.
          * @throws MathIllegalArgumentException if the {@code coefficients} array is empty.
          */
-        public Complex solve(Complex coefficients[], Complex initial)
+        public Complex solve(Complex[] coefficients, Complex initial)
             throws MathIllegalArgumentException, NullArgumentException,
                    MathIllegalStateException {
             if (coefficients == null) {
